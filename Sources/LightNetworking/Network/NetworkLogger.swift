@@ -8,7 +8,7 @@
 import Foundation
 
 /// The level of logging for API calls.
-public enum NetworkLogLevel {
+public enum NetworkLogLevel: Int {
     case off
     case info
     case debug
