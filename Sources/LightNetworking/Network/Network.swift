@@ -31,7 +31,7 @@ public struct Network {
     ///     - endpoint: The endpoint that is used to build the HTTP request, configured with a placeholder decodable data model
     /// - Returns:
     ///     - DecodableDataModel: A decoded object of the type specified in the type parameter
-    @discardableResult public func request<DecodableDataModel>(endpoint: Endpoint<DecodableDataModel>, timeoutInterval: Double = 20.0) async throws -> DecodableDataModel where DecodableDataModel: Decodable {
+    @discardableResult public func request(endpoint: Endpoint, timeoutInterval: Double = 20.0) async throws -> Data? {
         // build request
         let request = try buildRequest(from: endpoint, timeoutInterval: timeoutInterval)
         // debug log the request
@@ -42,15 +42,13 @@ public struct Network {
         networkLogger.log(response: response, data: data)
         // validate the HTTP status code and the existence of data
         try validateResponse(response, data: data)
-        // attempt to decode data
-        let model: DecodableDataModel = try parseJSON(jsonData: data)
-        // return data model (will be nil if this is a call that doesn't expect a model in the response)
-        return model
+        // return the raw data
+        return data
     }
     
     // MARK: - Build Request
     
-    private func buildRequest<DecodableDataModel>(from endpoint: Endpoint<DecodableDataModel>, timeoutInterval: Double) throws -> URLRequest {
+    private func buildRequest(from endpoint: Endpoint, timeoutInterval: Double) throws -> URLRequest {
         // create the request
         guard let url = URL(string: baseURL) else {
             throw APIError.invalidURL

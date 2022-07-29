@@ -9,7 +9,7 @@ import Foundation
 
 /// A representation of a data model combined with components needed to build a URL request.
 /// The DecodableDataModel can be any type that conforms to Decodable.
-public struct Endpoint<DecodableDataModel: Decodable> {
+public struct Endpoint {
 
     // MARK: - Properties
     
