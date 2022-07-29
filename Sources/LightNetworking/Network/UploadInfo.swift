@@ -36,10 +36,10 @@ public enum UploadType {
 }
 
 public struct UploadInfo {
-    let type: UploadType
-    let data: Data?
+    public let type: UploadType
+    public let data: Data?
     
-    init(type: UploadType, data: Data?) {
+    public init(type: UploadType, data: Data?) {
         self.type = type
         self.data = data
     }
