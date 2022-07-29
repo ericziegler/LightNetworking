@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct Coffee: Codable {
-    let id: String
-    let name: String
-}
-
 /// Contains functions that take Data (formatted as JSON), and decodes into a specific data type
 public class JSONParser {
  
