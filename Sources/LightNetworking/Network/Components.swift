@@ -19,6 +19,9 @@ public enum HTTPHeaderKey {
 
 }
 
+/// Typealias for upload progress that contains a percent complete
+public typealias UploadProgressBlock = (_ progress: Float) -> ()
+
 /// Typealias for a [String : Any] dictionary.
 public typealias Parameters = [String : Any]
 
@@ -32,6 +35,8 @@ public enum HTTPMethod: String {
 
 ///// API-specific errors used to specify network failures.
 public enum APIError: LocalizedError {
+    /// No network connection found
+    case noNetwork
     /// Failed to encode either paramters, headers, or body data
     case encodingFailed
     /// Failed to decode json data
@@ -42,12 +47,16 @@ public enum APIError: LocalizedError {
     case badStatusCode(Int)
     /// Missing or invalid URL
     case invalidURL
+    /// Missing data
+    case missingData
     /// Unknown API error
     case unknown
 
     /// A text description of the error
     public var errorDescription: String? {
         switch self {
+        case .noNetwork:
+            return "No network cound"
         case .encodingFailed:
             return "Failed to encode"
         case .decodingFailed:
@@ -58,8 +67,10 @@ public enum APIError: LocalizedError {
             return "Bad status code: \(statusCode)"
         case .invalidURL:
             return "Invalid URL"
+        case .missingData:
+            return "Missing data"
         case .unknown:
             return "Unknown API error"
         }
-    }
+    }    
 }

@@ -18,4 +18,12 @@ extension Data {
         return prettyPrintedString
     }
     
+    // Appends string as UTF8-encoded data
+    mutating func appendString(string: String) {
+        guard let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) else {
+            return
+        }
+        self.append(data)
+    }
+    
 }
