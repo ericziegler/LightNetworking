@@ -27,10 +27,13 @@ public struct Network {
     // MARK: - Perform Request
     
     /// Asynchronous, throwable entry point for all Network requests.
+    /// 
     /// - Parameters:
-    ///     - endpoint: The endpoint that is used to build the HTTP request, configured with a placeholder decodable data model
-    /// - Returns:
-    ///     - DecodableDataModel: A decoded object of the type specified in the type parameter
+    /// - endpoint: The endpoint that is used to build the HTTP request, configured with a placeholder decodable data model
+    ///
+    /// - Returns: Optional data (usually JSON)
+    ///
+    /// - Throws: An API Error
     @discardableResult public func request(endpoint: Endpoint, timeoutInterval: Double = 20.0) async throws -> Data? {
         // build request
         let request = try buildRequest(from: endpoint, timeoutInterval: timeoutInterval)

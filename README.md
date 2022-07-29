@@ -6,7 +6,8 @@
 1. Create an `Endpoint`
 2. Initialize `Network`, providing a `baseURL`
 3. Call `Network.request()` passing an endpoint
-4. Wait for the data to return or an error to be thrown.
+4. Wait for the data to return or an error to be thrown
+5. Optionally use JSONParser to decode returned JSON into a decodable data model
 
 ```
 // 1.
@@ -27,4 +28,8 @@ Task {
         print(error.localizedDescription)
     }
 }
+
+// 5.
+JSONParser
 ```
+

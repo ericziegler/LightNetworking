@@ -24,8 +24,9 @@ struct NetworkLogger {
     }
 
     /// Logs a URL request with it's url, headers, and body.
+    ///
     /// - Parameters:
-    ///     - request: The URL request to log
+    /// - request: The URL request to log
     func log(request: URLRequest) {
         guard logLevel != .off else {
             return
@@ -42,9 +43,10 @@ struct NetworkLogger {
     }
 
     /// Logs the response from a URL request, including the status code and JSON.
+    ///
     /// - Parameters:
-    ///     - response: The URL response to log
-    ///     - data: The JSON data to log
+    /// - response: The URL response to log
+    /// - data: The JSON data to log
     func log(response: URLResponse, data: Data) {
         guard logLevel != .off else {
             return

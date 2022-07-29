@@ -34,6 +34,8 @@ public enum HTTPMethod: String {
 public enum APIError: LocalizedError {
     /// Failed to encode either paramters, headers, or body data
     case encodingFailed
+    /// Failed to decode json data
+    case decodingFailed
     /// No response found
     case noResponse
     /// Bad HTTP status code
@@ -48,6 +50,8 @@ public enum APIError: LocalizedError {
         switch self {
         case .encodingFailed:
             return "Failed to encode"
+        case .decodingFailed:
+            return "Failed to decode"
         case .noResponse:
             return "No response"
         case .badStatusCode(let statusCode):
